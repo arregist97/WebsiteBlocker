@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Website Blocker",
+  "version": "1.0",
+  "description": "Blocks specific websites based on user settings.",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "tabs",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/block.jpg"
+    }
+  },
+  "icons": {
+    "48": "icons/block.png"
+  },
+  "options_ui": {
+    "page": "popup.html",
+    "open_in_tab": false
+  }
+}
