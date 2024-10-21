@@ -1,8 +1,8 @@
 // Initialize the list of blocked websites
-let blockedSites = ["www.reddit.com"];
+let blockedSites = [];
 
 // Load blocked sites from storage when the extension is loaded
-chrome.storage.sync.get(["blocked"], function (result) {
+browser.storage.local.get(["blocked"], function (result) {
     if (result.blocked) {
         blockedSites = result.blocked;
     }

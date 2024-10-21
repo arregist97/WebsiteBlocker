@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load the list of blocked sites
     function loadBlockedSites() {
-        chrome.storage.sync.get(['blocked'], function (result) {
+        browser.storage.local.get(['blocked'], function (result) {
             blockedSitesList.innerHTML = '';
             const blockedSites = result.blocked || [];
 
@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add a website to the block list
     function addSite(site) {
-        chrome.storage.sync.get(['blocked'], function (result) {
+        browser.storage.local.get(['blocked'], function (result) {
             const blockedSites = result.blocked || [];
             if (!blockedSites.includes(site)) {
                 blockedSites.push(site);
-                chrome.storage.sync.set({ blocked: blockedSites }, function () {
+                browser.storage.local.set({ blocked: blockedSites }, function () {
                     loadBlockedSites();
                 });
             }
@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Remove a website from the block list
     function removeSite(site) {
-        chrome.storage.sync.get(['blocked'], function (result) {
+        browser.storage.local.get(['blocked'], function (result) {
             const blockedSites = result.blocked || [];
             const updatedSites = blockedSites.filter(s => s !== site);
-            chrome.storage.sync.set({ blocked: updatedSites }, function () {
+            browser.storage.local.set({ blocked: updatedSites }, function () {
                 loadBlockedSites();
             });
         });
